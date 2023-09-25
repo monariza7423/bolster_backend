@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ThreadBbsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/contact', [ContactController::class, 'store']);
+
+Route::post('/thread_bbs', [ThreadBbsController::class, 'store']);
+Route::get('/thread_bbs', [ThreadBbsController::class, 'index']);
