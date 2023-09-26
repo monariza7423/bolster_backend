@@ -4,20 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\ThreadBbsReply;
+use App\Models\ThreadBbs;
 
-class ThreadBbs extends Model
+class ThreadBbsReply extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
-        'title',
+        'thread_id',
         'name',
         'content',
     ];
 
-    public function replies()
+    public function threadBbs()
     {
-        return $this->hasMany(ThreadBbsReply::class);
+        return $this->belongsTo(ThreadBbs::class);
     }
 }

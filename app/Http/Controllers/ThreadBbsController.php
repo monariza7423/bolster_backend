@@ -25,4 +25,10 @@ class ThreadBbsController extends Controller
         $threads = ThreadBbs::all();
         return response()->json($threads);
     }
+
+    public function show($id)
+    {
+        $thread = ThreadBbs::find($id);
+        return response() -> json($thread);
+    }
 }

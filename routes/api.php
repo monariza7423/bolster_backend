@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ThreadBbsController;
+use App\Http\Controllers\ThreadBbsReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,7 @@ Route::post('/contact', [ContactController::class, 'store']);
 
 Route::post('/thread_bbs', [ThreadBbsController::class, 'store']);
 Route::get('/thread_bbs', [ThreadBbsController::class, 'index']);
+Route::get('/thread_bbs/{id}', [ThreadBbsController::class, 'show']);
+
+Route::post('/thread_bbs_reply', [ThreadBbsReplyController::class, 'store']);
+Route::get('/thread_bbs_replies', [ThreadBbsReplyController::class, 'index']);
