@@ -19,6 +19,6 @@ class ThreadBbsReply extends Model
 
     public function threadBbs()
     {
-        return $this->belongsTo(ThreadBbs::class);
+        return $this->belongsTo(ThreadBbs::class, 'thread_id');
     }
 }

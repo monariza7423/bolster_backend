@@ -18,6 +18,6 @@ class ThreadBbs extends Model
 
     public function replies()
     {
-        return $this->hasMany(ThreadBbsReply::class);
+        return $this->hasMany(ThreadBbsReply::class, 'thread_id');
     }
 }

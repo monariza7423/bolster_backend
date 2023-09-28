@@ -26,6 +26,8 @@ Route::post('/contact', [ContactController::class, 'store']);
 Route::post('/thread_bbs', [ThreadBbsController::class, 'store']);
 Route::get('/thread_bbs', [ThreadBbsController::class, 'index']);
 Route::get('/thread_bbs/{id}', [ThreadBbsController::class, 'show']);
+Route::patch('/thread_bbs/{id}', [ThreadBbsController::class, 'update']);
+Route::delete('/thread_bbs/{id}', [ThreadBbsController::class, 'destroy']);
 
 Route::post('/thread_bbs_reply', [ThreadBbsReplyController::class, 'store']);
 Route::get('/thread_bbs_replies', [ThreadBbsReplyController::class, 'index']);

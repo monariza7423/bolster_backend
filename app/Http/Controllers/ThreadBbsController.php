@@ -31,4 +31,34 @@ class ThreadBbsController extends Controller
         $thread = ThreadBbs::find($id);
         return response() -> json($thread);
     }
+
+    public function update(Request $request, $id)
+    {
+        $thread = ThreadBbs::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'name' => 'required|max:255',
+            'content' => 'required|string|max:255',
+        ]);
+
+        $thread->update($validatedData);
+
+        return response()->json(['message' => 'Thread updated successfully', 'data' => $thread]);
+    }
+
+    public function destroy($id)
+    {
+        $thread = ThreadBbs::find($id);
+
+        if (!$thread) {
+            return response()->json(['message' => 'Thread not found'], 404);
+        }
+
+        $thread->replies()->delete();
+
+        $thread->delete();
+
+        return response()->json(['message' => 'Thread and its replies deleted successfully']);
+    }
 }
