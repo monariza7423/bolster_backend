@@ -20,7 +20,7 @@ class ThreadBbsReplyController extends Controller
         return response()->json(['reply' => $reply], 201);
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $threadId = $request->input('thread_id');
         if ($threadId) {
@@ -29,5 +29,44 @@ class ThreadBbsReplyController extends Controller
             $replies = ThreadBbsReply::all();
         }
         return response()->json($replies);
+    }
+
+    public function show($replyId)
+    {
+        $reply = ThreadBbsReply::find($replyId);
+        if (!$reply) {
+            return response()->json(['message' => 'Reply not found'], 404);
+        }
+
+        return response()->json($reply);
+    }
+
+    public function update(Request $request, $replyId)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'content' => 'required|string|max:255',
+        ]);
+
+        $reply = ThreadBbsReply::find($replyId);
+        if (!$reply) {
+            return response()->json(['message' => 'Reply not found'], 404);
+        }
+
+        $reply->update($validatedData);
+
+        return response()->json(['message' => 'Reply updated successfully']);
+    }
+
+    public function destroy($replyId)
+    {
+        $reply = ThreadBbsReply::find($replyId);
+        if (!$reply) {
+            return response()->json(['message' => 'Reply not found'], 404);
+        }
+
+        $reply->delete();
+
+        return response()->json(['message' => 'Reply deleted successfully']);
     }
 }

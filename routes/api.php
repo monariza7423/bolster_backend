@@ -31,3 +31,6 @@ Route::delete('/thread_bbs/{id}', [ThreadBbsController::class, 'destroy']);
 
 Route::post('/thread_bbs_reply', [ThreadBbsReplyController::class, 'store']);
 Route::get('/thread_bbs_replies', [ThreadBbsReplyController::class, 'index']);
+Route::get('/thread_bbs_reply/{id}', [ThreadBbsReplyController::class, 'show']);
+Route::patch('/thread_bbs_reply/{id}', [ThreadBbsReplyController::class, 'update']);
+Route::delete('/thread_bbs_reply/{id}', [ThreadBbsReplyController::class, 'destroy']);
