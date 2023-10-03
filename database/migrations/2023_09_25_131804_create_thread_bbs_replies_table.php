@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('thread_bbs_id');
             $table->foreign('thread_bbs_id')->references('id')->on('thread_bbs')->onDelete('cascade');
-
             $table->string('name');
             $table->text('content');
             $table->timestamps();
