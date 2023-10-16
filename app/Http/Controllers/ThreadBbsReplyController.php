@@ -4,19 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ThreadBbsReply;
+use App\Http\Requests\StoreThreadBbsReplyRequest;
 
 class ThreadBbsReplyController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreThreadBbsReplyRequest $request)
     {
-        $validated = $request->validate([
-            'thread_id' => 'required|integer|exists:thread_bbs,id',
-            'name' => 'required|string|max:255',
-            'content' => 'required|string|max:255',
-        ]);
-
+        $validated = $request->validated();
         $reply = ThreadBbsReply::create($validated);
-
         return response()->json(['reply' => $reply], 201);
     }
 

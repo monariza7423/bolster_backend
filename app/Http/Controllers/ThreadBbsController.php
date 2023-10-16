@@ -4,19 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ThreadBbs;
+use App\Http\Requests\StoreThreadBbsRequest;
 
 class ThreadBbsController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreThreadBbsRequest $request)
     {
-        $validated = $request-> validate([
-            'title' => 'required|string|max:255',
-            'name' => 'required|string|max:255',
-            'content' => 'required|string|max:255',
-        ]);
-
+        $validated = $request->validated();
         $post = ThreadBbs::create($validated);
-
         return response()->json(['post' => $post], 201);
     }
 
