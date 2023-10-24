@@ -26,7 +26,7 @@ class StoreThreadBbsReplyRequest extends FormRequest
         return [
             'thread_id' => 'required|integer|exists:thread_bbs,id',
             'name' => 'required|string|max:255',
-            'content' => 'required|string|max:255',
+            'content' => 'required',
         ];
     }
 }

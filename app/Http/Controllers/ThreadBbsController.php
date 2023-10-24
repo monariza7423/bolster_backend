@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ThreadBbs;
 use App\Http\Requests\StoreThreadBbsRequest;
+use App\Http\Requests\UpdateThreadBbsRequest;
 
 class ThreadBbsController extends Controller
 {
@@ -27,15 +28,11 @@ class ThreadBbsController extends Controller
         return response() -> json($thread);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateThreadBbsRequest $request, $id)
     {
         $thread = ThreadBbs::findOrFail($id);
 
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'name' => 'required|max:255',
-            'content' => 'required|string|max:255',
-        ]);
+        $validatedData = $request->validate();
 
         $thread->update($validatedData);
 
